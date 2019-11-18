@@ -1,0 +1,11 @@
+version: "2"
+services:
+  burp:
+    container_name: burp
+    build: .
+    image: wsilence/web2
+    restart: always
+    environment:
+      - FLAG=flag{test_flag}
+    ports:
+      - 10001:80

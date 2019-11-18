@@ -1,0 +1,11 @@
+version: "2"
+services:
+  faster:
+    container_name: faster
+    build: .
+    image: wsilence/web3
+    restart: always
+    environment:
+      - FLAG=flag{test_flag}
+    ports:
+      - 10005:80

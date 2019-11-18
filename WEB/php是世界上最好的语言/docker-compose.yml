@@ -1,0 +1,11 @@
+version: "2"
+services:
+  phpisbest:
+    container_name: phpisbest
+    build: .
+    image: wsilence/web1
+    restart: always
+    environment:
+      - FLAG=flag{test_flag}
+    ports:
+      - 10003:80

@@ -1,0 +1,11 @@
+version: "2"
+services:
+  login:
+    container_name: login
+    build: .
+    image: char0ny1t/ctfweb1
+    restart: always
+    environment:
+      - FLAG=flag{test_flag}
+    ports:
+      - 10004:80

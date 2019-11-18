@@ -1,0 +1,11 @@
+version: "2"
+services:
+  GirlfriendHub:
+    container_name: GirlfriendHub
+    build: .
+    image: char0ny1t/web3
+    restart: always
+    environment:
+      - FLAG=flag{test_flag}
+    ports:
+      - 10002:80

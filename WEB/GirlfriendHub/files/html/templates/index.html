@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+    <!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8">
+	<title>Girlfriend Hub</title>
+	
+    <!-- Mobile Specific Metas
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <!-- CSS
+  ================================================== -->
+  	<link rel="stylesheet" href="css/zerogrid.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link href="css/mb-comingsoon-iceberg.css" rel="stylesheet" />
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<!-- Custom Fonts -->
+	<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	
+	<script src="js/jquery-2.1.1.js"></script>
+
+	<!--[if lt IE 8]>
+       <div style=' clear: both; text-align:center; position: relative;'>
+         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+           <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+        </a>
+      </div>
+    <![endif]-->
+    <!--[if lt IE 9]>
+		<script src="js/html5.js"></script>
+		<script src="js/css3-mediaqueries.js"></script>
+	<![endif]-->
+
+	<?php
+
+	// take the variables 
+	if(isset($_GET['id']))
+	{
+	$id=$_GET['id'];
+	$sql = "SELECT persons.id,username,sex,age,address,height,job,content,save FROM persons left join pictures on persons.id = pictures.personid where persons.id='$id' LIMIT 0,1";
+	// $persons = $result->fetch();
+	}
+
+?>
+
+</head>
+<body>
+<div class="wrap-body">
+
+<!--////////////////////////////////////Header-->
+<header >
+	<div class="wrap-header">
+		<div class="main-header">
+			<div class="zerogrid">
+				<h1>Girlfriend Hub</h1>	
+			</div>
+		</div>
+	</div>
+</header>
+
+
+<section id="container">
+	<div class="wrap-container">
+		<!-----------------content-box-2-------------------->
+		<section class="content-box boxstyle-3 box-2">
+			<div class="zerogrid" style="width: 100%;">
+				<div class="row wrap-box"><!--Start Box-->
+					<div class="header">
+						<div class="wrapper">
+							<h2 class="color-yellow">Search the girl you want to pick</h2>
+							<div class="container">
+								        <!-- 搜索框 -->
+					            <form action="index.php" method="get" class="navbar-form navbar-center" role="search">
+							       <div class="form-group" >
+								        <input type="text" class="form-control" placeholder="id" name="id">
+								        <button type="submit" class="btn btn-info">Pick</button>
+							       </div>
+							       
+						       </form>
+							</div>
+						</div>
+					</div>
+				</div>
+					
+			</div>
+		</section>
+
+
+
+		<!-----------------content-box-4-------------------->
+		<section class="content-box boxstyle-2 box-4">
+			<div class="zerogrid">
+				<div class="row wrap-box"><!--Start Box-->
+					<div class="header">
+						<div class="wrapper">
+							<h2 class="color-yellow">Girls</h2>
+						</div>
+					</div>
+					<?php    
+						$retval = mysql_query($sql, $con );
+						while($value = mysql_fetch_array($retval)){ ?>
+					<div class="row"><!--Start Box-->
+						<div class="col-sm-9">
+
+							<div class="row post">
+								<div class="col-xs-8 col-sm-6">
+									<div class="wrap-col  wrapper">
+										<div class="zoom-container">
+											<a href="#"><img src="images/<?=htmlspecialchars($value['save'],ENT_QUOTES);?>"></a>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-5 col-sm-6">
+									<div class="wrap-col">
+										<h1><?=htmlspecialchars($value['id'],ENT_QUOTES);?></h1>
+										<h3><?=htmlspecialchars($value['username'],ENT_QUOTES);?></h3>
+										<span><?=htmlspecialchars($value['age']."岁",ENT_QUOTES);?></span>
+										<span><?=htmlspecialchars($value['address'],ENT_QUOTES);?></span>
+										<span><?=htmlspecialchars($value['height']."cm",ENT_QUOTES);?></span>
+										<span><?=htmlspecialchars($value['job'],ENT_QUOTES);?></span>
+										<p  style="word-break:break-word;"><?=htmlspecialchars($value['content'],ENT_QUOTES);?></p>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+					<?php } ?>
+				</div>
+			</div>
+		</section>
+			</div>
+		</section>
+</div>
+</body></html>
